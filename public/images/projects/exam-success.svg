@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.98 0.01 95)"/>
+  <circle cx="200" cy="150" r="50" fill="oklch(0.80 0.17 85)" opacity="0.15"/>
+  <polygon points="200,100 215,135 255,135 223,155 235,190 200,168 165,190 177,155 145,135 185,135" fill="oklch(0.32 0.16 270)" opacity="0.4"/>
+  <text x="200" y="55" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Exam Success</text>
+</svg>

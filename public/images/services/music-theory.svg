@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.97 0.02 280)"/>
+  <line x1="60" y1="80" x2="340" y2="80" stroke="oklch(0.32 0.16 270)" stroke-width="1" opacity="0.3"/>
+  <line x1="60" y1="100" x2="340" y2="100" stroke="oklch(0.32 0.16 270)" stroke-width="1" opacity="0.3"/>
+  <line x1="60" y1="120" x2="340" y2="120" stroke="oklch(0.32 0.16 270)" stroke-width="1" opacity="0.3"/>
+  <line x1="60" y1="140" x2="340" y2="140" stroke="oklch(0.32 0.16 270)" stroke-width="1" opacity="0.3"/>
+  <line x1="60" y1="160" x2="340" y2="160" stroke="oklch(0.32 0.16 270)" stroke-width="1" opacity="0.3"/>
+  <circle cx="100" cy="90" r="4" fill="oklch(0.32 0.16 270)" opacity="0.6"/>
+  <circle cx="130" cy="80" r="4" fill="oklch(0.32 0.16 270)" opacity="0.6"/>
+  <circle cx="160" cy="90" r="4" fill="oklch(0.32 0.16 270)" opacity="0.6"/>
+  <circle cx="190" cy="130" r="4" fill="oklch(0.32 0.16 270)" opacity="0.6"/>
+  <circle cx="220" cy="110" r="4" fill="oklch(0.56 0.14 195)" opacity="0.6"/>
+  <circle cx="250" cy="130" r="4" fill="oklch(0.56 0.14 195)" opacity="0.6"/>
+  <circle cx="280" cy="80" r="4" fill="oklch(0.56 0.14 195)" opacity="0.6"/>
+  <text x="200" y="50" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Music Theory</text>
+  <rect x="80" y="200" width="240" height="40" rx="8" fill="oklch(0.80 0.17 85)" opacity="0.2"/>
+  <text x="200" y="225" text-anchor="middle" font-family="monospace" font-size="12" fill="oklch(0.32 0.16 270)">I - IV - V - I</text>
+</svg>

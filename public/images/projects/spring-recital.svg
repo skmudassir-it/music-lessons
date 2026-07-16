@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.97 0.02 280)"/>
+  <rect x="60" y="100" width="280" height="130" rx="10" fill="oklch(0.32 0.16 270)" opacity="0.08"/>
+  <circle cx="140" cy="160" r="20" fill="oklch(0.56 0.14 195)" opacity="0.2"/>
+  <circle cx="200" cy="140" r="18" fill="oklch(0.80 0.17 85)" opacity="0.2"/>
+  <circle cx="260" cy="160" r="20" fill="oklch(0.32 0.16 270)" opacity="0.15"/>
+  <line x1="70" y1="240" x2="330" y2="240" stroke="oklch(0.32 0.16 270)" stroke-width="2" opacity="0.2"/>
+  <text x="200" y="60" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Spring Recital</text>
+</svg>

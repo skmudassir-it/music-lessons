@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.97 0.02 260)"/>
+  <circle cx="200" cy="140" r="50" fill="oklch(0.32 0.16 270)" opacity="0.1"/>
+  <circle cx="200" cy="140" r="30" fill="oklch(0.56 0.14 195)" opacity="0.15"/>
+  <path d="M175 110 Q200 80 225 110 Q250 140 225 170 Q200 200 175 170 Q150 140 175 110" fill="none" stroke="oklch(0.32 0.16 270)" stroke-width="2.5" opacity="0.4"/>
+  <circle cx="200" cy="140" r="6" fill="oklch(0.80 0.17 85)" opacity="0.8"/>
+  <line x1="200" y1="190" x2="200" y2="260" stroke="oklch(0.32 0.16 270)" stroke-width="3" opacity="0.3"/>
+  <text x="200" y="50" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Voice Lessons</text>
+</svg>

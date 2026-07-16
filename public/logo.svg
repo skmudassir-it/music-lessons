@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <text x="2" y="29" font-family="Georgia, serif" font-weight="bold" font-size="24" fill="oklch(0.32 0.16 270)">Harmony</text>
+  <text x="114" y="29" font-family="Georgia, serif" font-weight="bold" font-size="24" fill="oklch(0.80 0.17 85)">Keys</text>
+  <path d="M104 8 l6-6 m-3 6 l3-3 m0-3 l3 3" stroke="oklch(0.56 0.14 195)" stroke-width="1.5" fill="none"/>
+  <line x1="50" y1="14" x2="99" y2="14" stroke="oklch(0.56 0.14 195)" stroke-width="1"/>
+  <circle cx="48" cy="18" r="3" fill="oklch(0.56 0.14 195)" opacity="0.5"/>
+  <circle cx="55" cy="22" r="2.5" fill="oklch(0.56 0.14 195)" opacity="0.4"/>
+  <circle cx="62" cy="18" r="2" fill="oklch(0.56 0.14 195)" opacity="0.3"/>
+</svg>

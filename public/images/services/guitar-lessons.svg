@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.97 0.02 280)"/>
+  <ellipse cx="200" cy="180" rx="65" ry="80" fill="oklch(0.80 0.17 85)" opacity="0.2"/>
+  <rect x="196" y="80" width="8" height="100" rx="4" fill="oklch(0.32 0.16 270)" opacity="0.4"/>
+  <circle cx="200" cy="180" r="35" fill="none" stroke="oklch(0.32 0.16 270)" stroke-width="3" opacity="0.5"/>
+  <line x1="196" y1="80" x2="196" y2="140" stroke="oklch(0.56 0.14 195)" stroke-width="1.5"/>
+  <text x="200" y="60" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Guitar Lessons</text>
+  <circle cx="130" cy="230" r="10" fill="oklch(0.56 0.14 195)" opacity="0.25"/>
+  <circle cx="270" cy="230" r="10" fill="oklch(0.56 0.14 195)" opacity="0.25"/>
+</svg>

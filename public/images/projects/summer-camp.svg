@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="oklch(0.97 0.02 260)"/>
+  <circle cx="200" cy="140" r="40" fill="oklch(0.80 0.17 85)" opacity="0.2"/>
+  <circle cx="140" cy="170" r="25" fill="oklch(0.56 0.14 195)" opacity="0.15"/>
+  <circle cx="260" cy="170" r="25" fill="oklch(0.32 0.16 270)" opacity="0.15"/>
+  <text x="200" y="55" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Summer Camp</text>
+  <rect x="120" y="230" width="160" height="6" rx="3" fill="oklch(0.32 0.16 270)" opacity="0.2"/>
+</svg>
