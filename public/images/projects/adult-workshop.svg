@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
-  <rect width="400" height="300" fill="oklch(0.97 0.02 260)"/>
-  <circle cx="140" cy="160" r="25" fill="oklch(0.32 0.16 270)" opacity="0.1"/>
-  <circle cx="200" cy="140" r="25" fill="oklch(0.56 0.14 195)" opacity="0.1"/>
-  <circle cx="260" cy="160" r="25" fill="oklch(0.80 0.17 85)" opacity="0.1"/>
-  <text x="200" y="55" text-anchor="middle" font-family="Georgia" font-size="14" fill="oklch(0.32 0.16 270)" font-weight="bold">Adult Workshop</text>
-  <rect x="140" y="210" width="120" height="4" rx="2" fill="oklch(0.32 0.16 270)" opacity="0.15"/>
-</svg>

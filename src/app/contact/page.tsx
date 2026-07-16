@@ -1,189 +1,107 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faPaperPlane, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faEnvelope, faLocationDot, faClock, faPaperPlane, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  phone: z.string().min(7, "Please enter a valid phone number"),
-  instrument: z.string().min(1, "Please select an instrument"),
-  experience: z.string().min(1, "Please select your experience level"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(2, "Name required"),
+  email: z.string().email("Valid email required"),
+  phone: z.string().optional(),
+  interest: z.string().min(1, "Select an interest"),
+  message: z.string().min(10, "Tell us more (min 10 chars)"),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-const contactInfo = [
-  { icon: faPhone, label: "Phone", value: "(555) 123-4567" },
-  { icon: faEnvelope, label: "Email", value: "hello@harmonykeys.com" },
-  { icon: faLocationDot, label: "Location", value: "Portland, OR 97201" },
-  { icon: faClock, label: "Hours", value: "Mon-Fri: 10AM-8PM | Sat: 9AM-5PM" },
-];
-
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-  });
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({ resolver: zodResolver(formSchema) });
 
   const onSubmit = async (data: FormData) => {
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) {
-        setSubmitted(true);
-      }
-    } catch {
-      // silently handle
-    } finally {
-      setSubmitting(false);
-    }
+    setLoading(true);
+    try { const res = await fetch("/api/quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }); if (res.ok) setSubmitted(true); } catch {}
+    setLoading(false);
   };
 
-  return (
-    <>
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-3">Contact Us</Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Book Your Free Trial</h1>
-            <div className="gradient-divider w-24 mx-auto mt-4 mb-4" />
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Ready to start your musical journey? Fill out the form below and we'll get you matched with the perfect instructor.
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-3 max-w-5xl mx-auto">
-            {/* Contact Info */}
-            <div className="space-y-4">
-              {contactInfo.map((info) => (
-                <Card key={info.label} className="glass-card">
-                  <CardContent className="p-4 flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
-                      <FontAwesomeIcon icon={info.icon} className="size-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">{info.label}</div>
-                      <div className="font-medium text-sm">{info.value}</div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Form */}
-            <div className="lg:col-span-2">
-              {submitted ? (
-                <Card className="glass-card p-10 text-center">
-                  <FontAwesomeIcon icon={faCheckCircle} className="size-12 text-primary mb-4" />
-                  <h2 className="text-2xl font-bold mb-2">Thank You!</h2>
-                  <p className="text-muted-foreground mb-6">
-                    We've received your inquiry and will contact you within 24 hours to schedule your free trial lesson.
-                  </p>
-                  <Button variant="outline" onClick={() => setSubmitted(false)}>
-                    Submit Another Request
-                  </Button>
-                </Card>
-              ) : (
-                <Card className="glass-card p-6 sm:p-8">
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <div>
-                        <label className="text-sm font-medium mb-1.5 block">Name *</label>
-                        <Input {...register("name")} placeholder="Your full name" />
-                        {errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium mb-1.5 block">Email *</label>
-                        <Input {...register("email")} type="email" placeholder="you@email.com" />
-                        {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
-                      </div>
-                    </div>
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <div>
-                        <label className="text-sm font-medium mb-1.5 block">Phone *</label>
-                        <Input {...register("phone")} placeholder="(555) 123-4567" />
-                        {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone.message}</p>}
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium mb-1.5 block">Instrument *</label>
-                        <Select onValueChange={(v: string | null) => setValue("instrument", v || "")}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select instrument" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="piano">Piano</SelectItem>
-                            <SelectItem value="guitar">Guitar</SelectItem>
-                            <SelectItem value="violin">Violin</SelectItem>
-                            <SelectItem value="voice">Voice</SelectItem>
-                            <SelectItem value="drums">Drums</SelectItem>
-                            <SelectItem value="music-theory">Music Theory</SelectItem>
-                            <SelectItem value="other">Other / Not Sure</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        {errors.instrument && <p className="text-xs text-destructive mt-1">{errors.instrument.message}</p>}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-1.5 block">Experience Level *</label>
-                      <Select onValueChange={(v: string | null) => setValue("experience", v || "")}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select experience level" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="beginner">Absolute Beginner</SelectItem>
-                          <SelectItem value="novice">Some Experience (less than 1 year)</SelectItem>
-                          <SelectItem value="intermediate">Intermediate (1-3 years)</SelectItem>
-                          <SelectItem value="advanced">Advanced (3+ years)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      {errors.experience && <p className="text-xs text-destructive mt-1">{errors.experience.message}</p>}
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-1.5 block">Message *</label>
-                      <Textarea {...register("message")} placeholder="Tell us about your goals, availability, or any questions..." rows={4} />
-                      {errors.message && <p className="text-xs text-destructive mt-1">{errors.message.message}</p>}
-                    </div>
-                    <Button type="submit" disabled={submitting} className="w-full">
-                      {submitting ? "Sending..." : (
-                        <>Send Request <FontAwesomeIcon icon={faPaperPlane} className="ml-2 size-4" /></>
-                      )}
-                    </Button>
-                  </form>
-                </Card>
-              )}
-            </div>
+  if (submitted) {
+    return (
+      <section className="py-20">
+        <div className="mx-auto max-w-lg px-4 text-center">
+          <div className="glass-card p-10">
+            <div className="flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary mx-auto mb-4"><FontAwesomeIcon icon={faCheck} className="size-7" /></div>
+            <h1 className="text-2xl font-bold mb-2">Thank You!</h1>
+            <p className="text-muted-foreground mb-6">We'll reach out within 24 hours to schedule your free trial lesson.</p>
+            <Link href="/" className="inline-flex"><Button variant="outline">Back to Home</Button></Link>
           </div>
         </div>
       </section>
-    </>
+    );
+  }
+
+  return (
+    <section className="py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <Badge variant="secondary" className="mb-3">Get Started</Badge>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Book Your Free Trial</h1>
+          <div className="gradient-divider w-24 mx-auto mb-4" />
+          <p className="text-muted-foreground max-w-xl mx-auto">Fill out the form and we'll match you with the perfect instructor for a no-obligation trial lesson.</p>
+        </div>
+        <div className="grid lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+          <div className="lg:col-span-2">
+            <Card className="glass-card">
+              <CardHeader><CardTitle>Tell Us About Yourself</CardTitle><CardDescription>All fields except phone are required.</CardDescription></CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                  <div><Input placeholder="Full Name" {...register("name")} />{errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}</div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div><Input type="email" placeholder="Email Address" {...register("email")} />{errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}</div>
+                    <div><Input placeholder="Phone (optional)" {...register("phone")} /></div>
+                  </div>
+                  <div>
+                    <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" {...register("interest")} defaultValue="">
+                      <option value="" disabled>I'm interested in...</option>
+                      <option value="piano">Piano Lessons</option>
+                      <option value="guitar">Guitar Lessons</option>
+                      <option value="voice">Voice Coaching</option>
+                      <option value="violin">Violin Lessons</option>
+                      <option value="drums">Drum Lessons</option>
+                      <option value="theory">Music Theory</option>
+                      <option value="group">Group Classes</option>
+                      <option value="online">Online Lessons</option>
+                      <option value="multiple">Multiple / Not Sure</option>
+                    </select>
+                    {errors.interest && <p className="text-xs text-destructive mt-1">{errors.interest.message}</p>}
+                  </div>
+                  <div><Textarea placeholder="Tell us about your musical background and goals..." rows={4} {...register("message")} />{errors.message && <p className="text-xs text-destructive mt-1">{errors.message.message}</p>}</div>
+                  <Button type="submit" disabled={loading} className="w-full">{loading ? "Sending..." : <><FontAwesomeIcon icon={faPaperPlane} className="size-4 mr-2" /> Send & Book Trial</>}</Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="space-y-6">
+            <Card className="glass-card">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex items-start gap-3"><FontAwesomeIcon icon={faPhone} className="size-4 text-primary mt-0.5" /><div><p className="font-medium text-sm">Phone</p><p className="text-sm text-muted-foreground">(555) 123-4567</p></div></div>
+                <div className="flex items-start gap-3"><FontAwesomeIcon icon={faEnvelope} className="size-4 text-primary mt-0.5" /><div><p className="font-medium text-sm">Email</p><p className="text-sm text-muted-foreground">hello@notewisemusic.com</p></div></div>
+                <div className="flex items-start gap-3"><FontAwesomeIcon icon={faMapMarkerAlt} className="size-4 text-primary mt-0.5" /><div><p className="font-medium text-sm">Studio</p><p className="text-sm text-muted-foreground">123 Melody Lane, Suite 100<br />Portland, OR 97201</p></div></div>
+                <div className="flex items-start gap-3"><FontAwesomeIcon icon={faClock} className="size-4 text-primary mt-0.5" /><div><p className="font-medium text-sm">Hours</p><p className="text-sm text-muted-foreground">Mon–Fri: 9 AM – 8 PM<br />Sat: 9 AM – 5 PM<br />Sun: Closed</p></div></div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

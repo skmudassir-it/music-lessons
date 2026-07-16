@@ -1,90 +1,86 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMusic, faPhone, faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faMusic, faPhone, faEnvelope, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { Separator } from "@/components/ui/separator";
 
-const footerLinks = {
-  Services: [
-    { href: "/services", label: "All Services" },
-    { href: "/services/piano-lessons", label: "Piano" },
-    { href: "/services/guitar-lessons", label: "Guitar" },
-    { href: "/services/violin-lessons", label: "Violin" },
-    { href: "/services/voice-lessons", label: "Voice" },
-  ],
-  Company: [
-    { href: "/about", label: "About Us" },
-    { href: "/projects", label: "Student Work" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/contact", label: "Contact" },
-  ],
-  Programs: [
-    { href: "/services/drum-lessons", label: "Drums" },
-    { href: "/services/music-theory", label: "Music Theory" },
-    { href: "/services/group-classes", label: "Group Classes" },
-    { href: "/services/recital-prep", label: "Recital Prep" },
-  ],
-};
+const serviceLinks = [
+  { href: "/services/piano-lessons", label: "Piano Lessons" },
+  { href: "/services/guitar-lessons", label: "Guitar Lessons" },
+  { href: "/services/voice-coaching", label: "Voice Coaching" },
+  { href: "/services/violin-lessons", label: "Violin Lessons" },
+  { href: "/services/drum-lessons", label: "Drum Lessons" },
+  { href: "/services/music-theory", label: "Music Theory" },
+];
+
+const quickLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/services", label: "All Services" },
+  { href: "/projects", label: "Performances" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300 mt-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white mb-4">
-              <FontAwesomeIcon icon={faMusic} className="size-5 text-secondary" />
-              <span>Harmony<span className="text-secondary">Keys</span></span>
+    <footer className="glass mt-auto border-t">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Link href="/" className="flex items-center gap-2 mb-4">
+              <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <FontAwesomeIcon icon={faMusic} className="size-4" />
+              </div>
+              <span className="text-lg font-bold">NoteWise</span>
             </Link>
-            <p className="text-slate-400 text-sm mb-6 max-w-sm">
-              Inspiring musicians of all ages with expert instruction in piano, guitar, violin, voice, drums, and more. Start your musical journey today.
+            <p className="text-sm text-muted-foreground mb-4">
+              Inspiring musical excellence through personalized instruction since 2010.
             </p>
-            <div className="flex gap-3">
-              <a href="#" className="size-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Facebook">
-                <FontAwesomeIcon icon={faFacebook} className="size-4" />
-              </a>
-              <a href="#" className="size-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Instagram">
-                <FontAwesomeIcon icon={faInstagram} className="size-4" />
-              </a>
-              <a href="#" className="size-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="YouTube">
-                <FontAwesomeIcon icon={faYoutube} className="size-4" />
-              </a>
+            <div className="flex gap-3 text-muted-foreground">
+              <a href="#" className="hover:text-primary transition-colors"><FontAwesomeIcon icon={faFacebook} className="size-5" /></a>
+              <a href="#" className="hover:text-primary transition-colors"><FontAwesomeIcon icon={faInstagram} className="size-5" /></a>
+              <a href="#" className="hover:text-primary transition-colors"><FontAwesomeIcon icon={faYoutube} className="size-5" /></a>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="font-semibold text-white mb-4">{title}</h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-slate-400 hover:text-secondary transition-colors">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h4 className="font-semibold mb-3">Services</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {serviceLinks.map((s) => (
+                <li key={s.href}><Link href={s.href} className="hover:text-primary transition-colors">{s.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-3">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {quickLinks.map((q) => (
+                <li key={q.href}><Link href={q.href} className="hover:text-primary transition-colors">{q.label}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-3">Contact</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faPhone} className="size-3 text-primary" />
+                <span>(555) 123-4567</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faEnvelope} className="size-3 text-primary" />
+                <span>hello@notewisemusic.com</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="size-3 text-primary" />
+                <span>123 Melody Lane, Suite 100<br />Portland, OR 97201</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <Separator className="my-8 bg-slate-800" />
-
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>&copy; {new Date().getFullYear()} HarmonyKeys Music Academy. All rights reserved.</p>
-          <div className="flex gap-4">
-            <span className="flex items-center gap-1.5">
-              <FontAwesomeIcon icon={faPhone} className="size-3" /> (555) 123-4567
-            </span>
-            <span className="flex items-center gap-1.5">
-              <FontAwesomeIcon icon={faEnvelope} className="size-3" /> hello@harmonykeys.com
-            </span>
-            <span className="flex items-center gap-1.5">
-              <FontAwesomeIcon icon={faLocationDot} className="size-3" /> Portland, OR
-            </span>
-          </div>
+        <div className="mt-10 pt-6 border-t text-center text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} NoteWise Music Academy. All rights reserved.
         </div>
       </div>
     </footer>
